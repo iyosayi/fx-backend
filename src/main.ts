@@ -14,7 +14,7 @@ async function bootstrap() {
   const logger = app.get(WinstonLoggerService);
   app.useLogger(logger);
 
-  const apiPrefix = process.env.API_PREFIX || '/api';
+  const apiPrefix = process.env.API_PREFIX;
   app.setGlobalPrefix(apiPrefix);
 
   app.use(cookieParser());
