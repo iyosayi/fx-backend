@@ -14,8 +14,6 @@ async function bootstrap() {
   const logger = app.get(WinstonLoggerService);
   app.useLogger(logger);
 
-  const apiPrefix = process.env.API_PREFIX;
-  app.setGlobalPrefix(apiPrefix);
 
   app.use(cookieParser());
 
@@ -43,7 +41,6 @@ async function bootstrap() {
 
   logger.log(`Server is running on port ${port}`, 'Bootstrap');
   logger.log(`Environment: ${process.env.NODE_ENV || 'development'}`, 'Bootstrap');
-  logger.log(`API prefix: ${apiPrefix}`, 'Bootstrap');
 }
 
 bootstrap();
