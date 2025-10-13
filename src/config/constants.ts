@@ -76,15 +76,14 @@ export const COOKIE_CONFIG = {
   REFRESH_TOKEN_NAME: 'refreshToken',
   OPTIONS: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-    sameSite: 'strict' as const,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'lax' as const : 'strict' as const,
     path: '/',
+    domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN_NAME : undefined,
   },
-  ACCESS_TOKEN_MAX_AGE: 15 * 60 * 1000, // 15 minutes in milliseconds
-  REFRESH_TOKEN_MAX_AGE: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
+  ACCESS_TOKEN_MAX_AGE: 15 * 60 * 1000,
+  REFRESH_TOKEN_MAX_AGE: 7 * 24 * 60 * 60 * 1000,
 };
 
 export const RATE_CACHE_TTL = parseInt(process.env.RATE_CACHE_TTL || '3600', 10);
-
-export const API_PREFIX = process.env.API_PREFIX || '/api';
 
